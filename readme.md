@@ -51,6 +51,8 @@ This doesn't reflect the real profiles. It's just an example of what's possible.
 
 ## How cards are drawn
 
+*This section has MathJax math in it, which GItHub doesn't really support. You can find an extension to render it for you.*
+
 We give different cards weights depending on:
 
 1. Their color (same color = more weight)
@@ -64,9 +66,13 @@ All curses are equally likely to be drawn.
 The tables show the weight of each card based on property. To get the weight of a particular card, multiply all the values from the relevant tables. So an Uncommon, Colorless, 2-Energy card will have a weight of 7.2 and a Common 1-energy same-color card will have the weight of 96.
 
 The weights can also be seen as odds (for and against). To find the actual probability of something from its odds:
+
+
 $$
 P(X)=\frac{\mathrm{Odds}(X)}{\sum_{i=1}^{n}\mathrm{Odds}(X_i)}
 $$
-So if X and Y have 3:1 odds, the probability of X is ${3\over4}​$. At least for me, it's easier to reason about probability like this than using 0.344123 and stuff.
+
+
+So if X and Y have 3:1 odds, the probability of X is ${3\over4}$. At least for me, it's easier to reason about probability like this than using 0.344123 and stuff.
 
 [**Current weights (YAML)**](site/app/content/weights.yaml)

@@ -1,0 +1,42 @@
+{
+  "name": "slay-the-spire-deck-tests",
+  "version": "1.0.0",
+  "description": "Test dynamic starter decks for StS",
+  "main": "index.js",
+  "author": "GregRos",
+  "license": "MIT",
+  "dependencies": {
+    "@bem-react/classname": "^1.4.4",
+    "@types/prismjs": "^1.9.1",
+    "@types/request-promise": "^4.1.42",
+    "lodash": "^4.17.11",
+    "parcel": "1.10.3",
+    "prismjs": "^1.15.0",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-simple-code-editor": "^0.9.3",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4",
+    "spectre.css": "^0.5.8",
+    "store": "^2.0.12",
+    "ts-loader": "^5.3.3",
+    "ui": "^0.2.4",
+    "webpack": "^4.29.6",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.122",
+    "@types/node": "^11.11.0",
+    "@types/react": "^16.8.7",
+    "@types/react-dom": "^16.8.2",
+    "@types/request": "^2.48.1",
+    "@types/store": "^2.0.1",
+    "@types/webpack": "^4.4.25",
+    "@types/yamljs": "^0.2.30",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "sass": "^1.17.2",
+    "typescript": "^3.3.3333",
+    "webpack-cli": "^3.2.3"
+  }
+}

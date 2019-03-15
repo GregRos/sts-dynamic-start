@@ -1,0 +1,23 @@
+Color:
+  Colorless: 1
+  Same: 3
+  Other: 0
+Upgraded:
+  Yes: 0
+  No: 1
+Rarity:
+  Basic: 64
+  Common: 32
+  Uncommon: 4
+  Rare: 1
+  Special: 1
+  Curse: 1
+Cost
+  0: 15
+  1: 20
+  2: 18
+  3: 15
+  4: 0
+  5: 0
+  X: 17
+  "": 1

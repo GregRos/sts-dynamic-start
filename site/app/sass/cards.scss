@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css?family=Kreon');
+@import '../../node_modules/spectre.css/dist/spectre';
+@import '../../node_modules/prismjs/themes/prism';
+
+body {
+  font-size: 18px;
+  font-family: "Kreon", Times, serif;
+}
+
+#frame {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  @extend .container;
+
+  &__columns {
+	@extend .columns;
+  }
+}
+
+#root {
+  @extend .col-10;
+  @extend .col-mx-auto;
+}
+
+.card-collections {
+}
+
+.card-collection {
+  @extend .empty;
+  @extend .bg-secondary;
+  @extend .columns;
+  padding: 15px;
+  position: relative;
+
+  &__title {
+	@extend .col-2;
+	font-size: 2em;
+	align-self: center;
+	flex: 1 1 auto;
+  }
+
+  &__collection {
+	@extend .col-10;
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	flex: 1 1 auto;
+	overflow-x: hidden;
+	overflow-y: auto;
+  }
+
+  margin-bottom: 30px;
+}
+
+.card-image {
+  margin: 10px;
+  box-shadow: 0 0.25rem 1rem rgba(48, 55, 66);
+  background: #9d8275;
+  width: 200px;
+
+  &__frame {
+	width: 100%;
+
+  }
+
+  &__image {
+	@extend .img-responsive;
+
+  }
+}
+
+.container__actions {
+  @extend .container;
+}
+
+.draw-action {
+  @extend .columns;
+  align-content: center;
+
+  &__inputs {
+	@extend .col-4, .col-ml-auto;
+  }
+
+  &__button-box {
+	@extend .col-2, .col-mx-auto;
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+
+  }
+
+  &__button {
+	@extend .btn-primary, .btn, .btn-lg;
+	font-size: 1.5em;
+  }
+
+  &__edit-weights-button {
+	@extend .btn-primary, .btn;
+
+  }
+}
+
+.select {
+  @extend .columns;
+  @extend .input-group;
+  margin: 20px;
+
+  &__input {
+	@extend .col-9;
+	@extend .form-select;
+  }
+
+  &__label {
+	@extend .col-3;
+	@extend .form-label;
+  }
+
+}
+
+.top-header {
+  @extend .hero, .bg-primary;
+  padding-left: 50px;
+
+  &__text {
+	@extend .hero-body;
+  }
+}
+
+#editor-portal {
+  position: absolute;
+  pointer-events: none;
+  top: 5vh;
+  z-index: 10;
+  width: 100%;
+  height: auto;
+  @extend .columns;
+}
+
+.code-editor {
+  @extend .col-6;
+  @extend .col-mx-auto;
+  box-shadow: 0 0.25rem 1rem rgba(48, 55, 66);
+  outline: 0;
+  border: 0;
+  pointer-events: auto;
+  background: #fafafa;
+  padding: 25px;
+  height: 100%;
+  &__title {
+	font-size: 28px;
+	margin-bottom: 20px;
+	background-color: #5351cf;
+	padding-left: 5px;
+	color: white;
+	user-select: none;
+	border-bottom: 2px solid #dbb8a7;
+  }
+  :focus {
+	outline: 0;
+  }
+
+  &__editor {
+	font-size: 12px;
+	font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
+	min-height: 50vh;
+	border-left: 1px solid #a0a0a0;
+	border-right: 1px solid #a0a0a0;
+	border-top: 1px solid #a0a0a0;
+	line-height: 18px;
+  }
+
+  &__controls {
+	@extend .columns;
+	margin-top: 10px;
+  }
+
+  &__save {
+	@extend .btn-success, .btn, .col-2, .col-ml-auto;
+	margin-right: 10px;
+  }
+
+  &__cancel {
+	@extend .btn-error, .btn, .col-2;
+	margin-right: 10px;
+
+  }
+}

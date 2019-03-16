@@ -6,7 +6,8 @@
   "author": "GregRos",
   "license": "MIT",
   "scripts": {
-    "export-yaml": "node scripts/export-yaml.js"
+    "export-yaml": "node scripts/export-yaml.js",
+    "build": "parcel build app/index.html --out-dir bin/"
   },
   "dependencies": {
     "js-yaml": "^3.12.2",

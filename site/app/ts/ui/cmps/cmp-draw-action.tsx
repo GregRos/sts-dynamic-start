@@ -8,9 +8,9 @@ import {DrawProfile} from "../../cards/draw-methods/draw-methods";
 import {CmpObjectEditor} from "./cmp-object-editor";
 import store = require("store");
 import _ = require("lodash");
+import {_package} from "../../index";
 
-const defaultWeights = require("../../../content/weights.yaml");
-const defaultProfiles = require("../../../content/profiles.yaml");
+const defaults = require("../../../content/data.yaml");
 
 export interface CmpDrawActionState extends DrawInfo {
     editor: string;
@@ -23,17 +23,15 @@ export interface DrawInfo {
     weights: StdMeasureWeights;
 }
 
-const defaultDrawInfo: DrawInfo = {
-    profiles: defaultProfiles,
-    selProfile: defaultProfiles[0],
+const baseDrawInfo: DrawInfo = _.assign({}, defaults, {
+    selProfile: defaults.profiles[0],
     color: "Red",
-    weights: defaultWeights
-};
+});
 
-const drawActions = store.namespace("drawActions");
-let initDraw = drawActions.get("saved");
+const drawStorage = store.namespace(`drawActions-${_package.version.replace(/\./g, "_")}`);
+let initDraw = drawStorage.get("saved");
 if (!initDraw) {
-    initDraw = drawActions.set("saved", defaultDrawInfo);
+    initDraw = drawStorage.set("saved", baseDrawInfo);
 }
 
 export interface CmpDrawActionProps {
@@ -49,57 +47,29 @@ export class CmpDrawAction extends React.Component<CmpDrawActionProps, CmpDrawAc
 
     onClick() {
         this.props.onDraw(this.state);
-
     }
 
-    private _saveWeights(obj: any) {
-        this.setAndSaveState({
-            weights: obj,
-            editor: null
-        });
-    }
-
-    setAndSaveState(x: Partial<CmpDrawActionState>) {
-
-        super.setState(x as any, () => {
-            drawActions.set("saved", _.omit(this.state, "editor"));
-        });
-    }
-
-    private _saveProfiles(obj: DrawProfile[]) {
-        let newlySelectedProfile = obj.find(
-            x => x.name === this.state.selProfile.name);
-        if (!newlySelectedProfile) {
-            newlySelectedProfile = obj[0];
+    setStateFromEditor(newState: Partial<CmpDrawActionState>) {
+        if (newState.profiles) {
+            newState.selProfile = newState.profiles.find(x => x.name === this.state.selProfile.name);
+            newState.editor = null;
         }
-        this.setAndSaveState({
-            profiles: obj,
-            selProfile: newlySelectedProfile,
-            editor: null
+        super.setState(newState as any, () => {
+            drawStorage.set("saved", _.omit(this.state, "editor"));
         });
     }
 
     private _showEditor(show: string) {
-        this.setAndSaveState({editor: show});
+        this.setState({editor: show});
     }
 
-    private _getWeightsEditor() {
+    private _getEditor() {
         return <CmpObjectEditor
-            initialValue={this.state.weights}
-            title="Edit card weights"
-            onSave={c => this._saveWeights(c)}
+            initialValue={_.omit(this.state, "editor", "selProfile", "color")}
+            title="Edit draw settings"
+            onSave={c => this.setStateFromEditor(c)}
             onCancel={() => this._showEditor(null)}
-            original={defaultWeights}
-        />;
-    }
-
-    private _getProfilesEditor() {
-        return <CmpObjectEditor
-            initialValue={this.state.profiles}
-            title="Edit draw profiles"
-            onSave={c => this._saveProfiles(c)}
-            onCancel={() => this._showEditor(null)}
-            original={defaultProfiles}
+            original={defaults}
         />;
     }
 
@@ -111,10 +81,7 @@ export class CmpDrawAction extends React.Component<CmpDrawActionProps, CmpDrawAc
 
         switch (state.editor) {
             case "weights":
-                editor = this._getWeightsEditor();
-                break;
-            case "profiles":
-                editor = this._getProfilesEditor();
+                editor = this._getEditor();
                 break;
             default:
                 editor = null;
@@ -129,7 +96,7 @@ export class CmpDrawAction extends React.Component<CmpDrawActionProps, CmpDrawAc
                     selected={this.state.selProfile}
                     display={x => x.name}
                     className="select-profile"
-                    onSelect={x => this.setAndSaveState({selProfile: x})}
+                    onSelect={x => this.setState({selProfile: x})}
                     title="Profile"
                 />
                 <Select
@@ -137,17 +104,12 @@ export class CmpDrawAction extends React.Component<CmpDrawActionProps, CmpDrawAc
                     selected={this.state.color}
                     display={x => x}
                     className="select-color"
-                    onSelect={x => this.setAndSaveState({color: x})}
+                    onSelect={x => this.setState({color: x})}
                     title="Color"
                 />
-                <button className={cls("edit-weights-button")}
+                <button className={cls("edit-button")}
                     onClick={() => this._showEditor("weights")}>
-                    Edit Weights
-                </button>
-                <button
-                    className={cls("edit-profiles-button")}
-                    onClick={() => this._showEditor("profiles")}>
-                    Edit Profiles
+                    Edit
                 </button>
             </div>
             <div className={cls("button-box")}>

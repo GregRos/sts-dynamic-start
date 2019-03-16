@@ -1,13 +1,14 @@
 {
   "name": "slay-the-spire-deck-tests",
-  "version": "1.0.0",
+  "version": "0.1.0-alpha",
   "description": "Test dynamic starter decks for StS",
   "main": "index.js",
   "author": "GregRos",
   "license": "MIT",
   "scripts": {
     "export-yaml": "node scripts/export-yaml.js",
-    "build": "parcel build app/index.html --out-dir bin/"
+    "build": "rm -rf bin && parcel build app/index.html --out-dir bin/",
+    "serve": "parcel app/index.html"
   },
   "dependencies": {
     "js-yaml": "^3.12.2",

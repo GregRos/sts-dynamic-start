@@ -1,0 +1,31 @@
+profiles:
+  - name: Balanced
+    offense: 4
+    defense: 4
+    special: 2
+
+  - name: Brute
+    offense: 6
+    defense: 2
+    special: 2
+
+  - name: Simpleton
+    offense: 5
+    defense: 5
+    special: 0
+
+weights:
+  color:
+    colorless: 1
+    same: 3
+    other: 0
+  upgraded:
+    yes: 0
+    no: 1
+  rarity:
+    Basic: 64
+    Common: 32
+    Uncommon: 4
+    Rare: 1
+    Special: 1
+    Curse: 1

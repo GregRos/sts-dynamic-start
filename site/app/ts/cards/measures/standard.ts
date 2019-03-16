@@ -2,16 +2,16 @@ import {Color, EnhancedCard} from "../cards/cards";
 import {MessageChannel} from "worker_threads";
 
 export interface StdMeasureWeights {
-    Color: {
-        Colorless: number;
-        Same: number;
-        Other: number;
+    color: {
+        colorless: number;
+        same: number;
+        other: number;
     };
-    Upgraded: {
-        Yes: number;
-        No: number;
+    upgraded: {
+        yes: number;
+        no: number;
     };
-    Rarity: {
+    rarity: {
         Basic: number;
         Common: number;
         Uncommon: number;
@@ -29,9 +29,9 @@ export class StdWeightedMeasure {
 
     measure(card: EnhancedCard) {
         let weights = this._weights;
-        let wgColor = weights.Color[card.color === this._color ? "Same" : card.color === "Colorless" ? card.color : "Other"];
-        let wgUpgraded = weights.Upgraded[card.upgraded ? "Yes" : "No"];
-        let wgRarity = weights.Rarity[card.rarity];
+        let wgColor = weights.color[card.color === this._color ? "same" : card.color === "Colorless" ? "colorless": "other"];
+        let wgUpgraded = weights.upgraded[card.upgraded ? "yes" : "no"];
+        let wgRarity = weights.rarity[card.rarity];
         let res = wgColor * wgUpgraded * wgRarity;
         return res;
     }

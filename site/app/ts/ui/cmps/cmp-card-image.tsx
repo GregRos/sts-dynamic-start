@@ -1,6 +1,6 @@
 import * as React from "react";
 import {cn} from "../bem";
-import {GameCard} from "../../logic/cards/cards";
+import {GameCard} from "../../cards/cards/cards";
 import {Api} from "../../api/api";
 
 export interface CmpCardImageState {
@@ -36,7 +36,8 @@ export class CmpCardImage extends React.Component<GameCard, CmpCardImageState> {
             <div className={root("frame")}>
                 <img
                     className={root("image")}
-                    src={Api.getImageUrl(this.props.name)} alt={this.props.description}
+                    src={Api.getImageUrl(this.props.name)}
+                    alt={this.props.description}
                     style={{opacity: this.state.loading ? 0 : 1}}
                     onLoad={x => this._imageLoaded()}
                 />

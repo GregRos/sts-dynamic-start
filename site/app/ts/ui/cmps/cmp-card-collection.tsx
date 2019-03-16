@@ -1,7 +1,7 @@
 import * as React from "react";
 import {CmpCardImage} from "./cmp-card-image";
 import {cn} from "../bem";
-import {GameCard} from "../../logic/cards/cards";
+import {GameCard} from "../../cards/cards/cards";
 
 export interface CardDraw {
     title: string;

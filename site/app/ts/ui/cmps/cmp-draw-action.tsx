@@ -1,16 +1,20 @@
 import * as React from "react";
-import {cn} from "../bem";
-import {Color, Colors} from "../../logic/cards/cards";
-import {StdMeasureWeights} from "../../logic/measures/standard";
-import {Select} from "./cmp-select";
-import {DrawProfile} from "../../logic/draw-methods/draw-methods";
-import {CmpObjectEditor} from "./cmp-object-editor";
-import * as YAML from "yamljs";
-import store = require("store");
 import {ReactNode} from "react";
+import {cn} from "../bem";
+import {Color, Colors} from "../../cards/cards/cards";
+import {StdMeasureWeights} from "../../cards/measures/standard";
+import {Select} from "./cmp-select";
+import {DrawProfile} from "../../cards/draw-methods/draw-methods";
+import {CmpObjectEditor} from "./cmp-object-editor";
+import store = require("store");
+import _ = require("lodash");
 
 const defaultWeights = require("../../../content/weights.yaml");
 const defaultProfiles = require("../../../content/profiles.yaml");
+
+export interface CmpDrawActionState extends DrawInfo {
+    editor: string;
+}
 
 export interface DrawInfo {
     profiles: DrawProfile[];
@@ -19,59 +23,64 @@ export interface DrawInfo {
     weights: StdMeasureWeights;
 }
 
-const drawActions = store.namespace("drawActions");
-let initWeights = drawActions.get("weights");
-if (!initWeights) {
-    initWeights = drawActions.set("weights", defaultWeights);
-}
+const defaultDrawInfo: DrawInfo = {
+    profiles: defaultProfiles,
+    selProfile: defaultProfiles[0],
+    color: "Red",
+    weights: defaultWeights
+};
 
-let initProfiles = drawActions.get("profiles");
-if (!initProfiles) {
-    initProfiles = drawActions.set("profiles", defaultProfiles);
+const drawActions = store.namespace("drawActions");
+let initDraw = drawActions.get("saved");
+if (!initDraw) {
+    initDraw = drawActions.set("saved", defaultDrawInfo);
 }
 
 export interface CmpDrawActionProps {
     onDraw: (profile: DrawInfo) => void;
 }
 
-export class CmpDrawAction extends React.Component<CmpDrawActionProps, DrawInfo & { editor: string }> {
+export class CmpDrawAction extends React.Component<CmpDrawActionProps, CmpDrawActionState> {
 
     constructor(props: CmpDrawActionProps) {
         super(props);
-        this.state = {
-            color: Colors[0],
-            weights: initWeights,
-            profiles: initProfiles,
-            editor: null,
-            selProfile: initProfiles[0]
-        };
+        this.state = _.clone(initDraw);
     }
 
     onClick() {
         this.props.onDraw(this.state);
+
     }
 
     private _saveWeights(obj: any) {
-        this.setState({
+        this.setAndSaveState({
             weights: obj,
             editor: null
         });
     }
 
+    setAndSaveState(x: Partial<CmpDrawActionState>) {
+
+        super.setState(x as any, () => {
+            drawActions.set("saved", _.omit(this.state, "editor"));
+        });
+    }
+
     private _saveProfiles(obj: DrawProfile[]) {
-        let newlySelectedProfile = obj.find(x => x.name === this.state.selProfile.name);
+        let newlySelectedProfile = obj.find(
+            x => x.name === this.state.selProfile.name);
         if (!newlySelectedProfile) {
             newlySelectedProfile = obj[0];
         }
-        this.setState({
+        this.setAndSaveState({
             profiles: obj,
             selProfile: newlySelectedProfile,
             editor: null
-        })
+        });
     }
 
     private _showEditor(show: string) {
-        this.setState({editor: show});
+        this.setAndSaveState({editor: show});
     }
 
     private _getWeightsEditor() {
@@ -79,7 +88,9 @@ export class CmpDrawAction extends React.Component<CmpDrawActionProps, DrawInfo 
             initialValue={this.state.weights}
             title="Edit card weights"
             onSave={c => this._saveWeights(c)}
-            onCancel={() => this._showEditor(null)}/>;
+            onCancel={() => this._showEditor(null)}
+            original={defaultWeights}
+        />;
     }
 
     private _getProfilesEditor() {
@@ -87,7 +98,9 @@ export class CmpDrawAction extends React.Component<CmpDrawActionProps, DrawInfo 
             initialValue={this.state.profiles}
             title="Edit draw profiles"
             onSave={c => this._saveProfiles(c)}
-            onCancel={() => this._showEditor(null)}/>;
+            onCancel={() => this._showEditor(null)}
+            original={defaultProfiles}
+        />;
     }
 
     render() {
@@ -112,11 +125,11 @@ export class CmpDrawAction extends React.Component<CmpDrawActionProps, DrawInfo 
             {editor}
             <div className={cls("inputs")}>
                 <Select
-                    options={this.props.profiles}
+                    options={this.state.profiles}
                     selected={this.state.selProfile}
                     display={x => x.name}
                     className="select-profile"
-                    onSelect={x => this.setState({selProfile: x})}
+                    onSelect={x => this.setAndSaveState({selProfile: x})}
                     title="Profile"
                 />
                 <Select
@@ -124,18 +137,17 @@ export class CmpDrawAction extends React.Component<CmpDrawActionProps, DrawInfo 
                     selected={this.state.color}
                     display={x => x}
                     className="select-color"
-                    onSelect={x => this.setState({color: x})}
+                    onSelect={x => this.setAndSaveState({color: x})}
                     title="Color"
                 />
                 <button className={cls("edit-weights-button")}
-                    onClick={() => this._showEditor(true)}>
+                    onClick={() => this._showEditor("weights")}>
                     Edit Weights
                 </button>
                 <button
                     className={cls("edit-profiles-button")}
-                    onClick={() => }
-                >
-
+                    onClick={() => this._showEditor("profiles")}>
+                    Edit Profiles
                 </button>
             </div>
             <div className={cls("button-box")}>

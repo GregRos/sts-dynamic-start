@@ -1,5 +1,5 @@
-import {StdCategorizer} from "../logic/cards/categorizer";
-import {EnhancedCard} from "../logic/cards/cards";
+import {StdCategorizer} from "../cards/cards/categorizer";
+import {EnhancedCard} from "../cards/cards/cards";
 const cardData = require("../../content/items.json");
 const std = new StdCategorizer();
 export module Api {

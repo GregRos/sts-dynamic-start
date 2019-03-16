@@ -6,13 +6,14 @@ import 'prismjs/components/prism-clike'
 import 'prismjs/components/prism-javascript';
 import 'prismjs/components/prism-yaml'
 import {cn} from "../bem";
-import * as YAML from "yamljs";
+import * as YAML from "js-yaml";
 
 export interface CmpObjectEditorProps {
     initialValue: object;
     onSave: (x: any) => void;
     onCancel: () => void;
     title: string;
+    original: object;
 }
 
 export interface CmpObjectEditorState {
@@ -24,17 +25,23 @@ export class CmpObjectEditor extends React.Component<CmpObjectEditorProps, CmpOb
     constructor(props: CmpObjectEditorProps) {
         super(props);
         this.state = {
-            content: YAML.stringify(props.initialValue)
+            content: YAML.dump(props.initialValue)
         };
     }
 
     private _save() {
         try {
-            this.props.onSave(YAML.parse(this.state.content))
+            this.props.onSave(YAML.load(this.state.content))
         }
         catch (err) {
             alert(`ERROR: ${err.message}`);
         }
+    }
+
+    private _default() {
+        this.setState({
+            content: YAML.dump(this.props.original,)
+        })
     }
 
     render() {
@@ -56,6 +63,9 @@ export class CmpObjectEditor extends React.Component<CmpObjectEditorProps, CmpOb
                 </button>
                 <button className={ns("cancel")} onClick={this.props.onCancel}>
                     Cancel
+                </button>
+                <button className={ns("default")} onClick={() => this._default()}>
+                    Restore Defaults
                 </button>
             </div>
         </div>;

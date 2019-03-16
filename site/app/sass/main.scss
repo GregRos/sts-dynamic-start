@@ -78,9 +78,9 @@ body {
 .draw-action {
   @extend .columns;
   align-content: center;
-
+  padding: 20px;
   &__inputs {
-	@extend .col-4, .col-ml-auto;
+	@extend .col-6, .col-ml-auto;
   }
 
   &__button-box {
@@ -98,7 +98,11 @@ body {
 
   &__edit-weights-button {
 	@extend .btn-primary, .btn;
+  }
 
+  &__edit-profiles-button {
+	@extend .btn-primary, .btn;
+	margin-left: 20px;
   }
 }
 
@@ -145,12 +149,11 @@ body {
   outline: 0;
   border: 0;
   pointer-events: auto;
-  background: #fafafa;
-  padding: 25px;
+  padding: 10px;
   height: 100%;
+  background: white;
   &__title {
 	font-size: 28px;
-	margin-bottom: 20px;
 	background-color: #5351cf;
 	padding-left: 5px;
 	color: white;
@@ -166,9 +169,9 @@ body {
 	font-family: Fira code, Fira Mono, Consolas, Menlo, Courier, monospace;
 	min-height: 50vh;
 	border-left: 1px solid #a0a0a0;
-	border-right: 1px solid #a0a0a0;
-	border-top: 1px solid #a0a0a0;
 	line-height: 18px;
+	background: #fafafa;
+
   }
 
   &__controls {
@@ -177,13 +180,19 @@ body {
   }
 
   &__save {
-	@extend .btn-success, .btn, .col-2, .col-ml-auto;
+	@extend .btn-success, .btn, .col-2;
 	margin-right: 10px;
+	margin-left: 10px;
   }
 
   &__cancel {
 	@extend .btn-error, .btn, .col-2;
 	margin-right: 10px;
+  }
 
+  &__default {
+	@extend .btn-primary, .btn, .col-2;
+	width: auto;
+	margin-right: 10px;
   }
 }

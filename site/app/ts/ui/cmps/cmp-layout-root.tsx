@@ -1,14 +1,14 @@
 import * as React from "react";
-import {EnhancedCard} from "../../logic/cards/cards";
+import {EnhancedCard} from "../../cards/cards/cards";
 import {cn} from "../bem";
 import {CmpDrawAction, DrawInfo} from "./cmp-draw-action";
 import {CmpDeckInfoBox} from "./cmp-deck-info-box";
 import {CmpCardCollections} from "./cmp-card-collections";
 import {CardDraw} from "./cmp-card-collection";
-import {CategoryMultiDraw} from "../../logic/draw-methods/category-multi-draw";
-import {Cdf} from "../../logic/draw-methods/cdf";
-import {StdWeightedMeasure} from "../../logic/measures/standard";
-import {DrawProfile} from "../../logic/draw-methods/draw-methods";
+import {CategoryMultiDraw} from "../../cards/draw-methods/category-multi-draw";
+import {Cdf} from "../../cards/draw-methods/cdf";
+import {StdWeightedMeasure} from "../../cards/measures/standard";
+import {DrawProfile} from "../../cards/draw-methods/draw-methods";
 import * as YAML from "yamljs";
 
 export interface LayourRootProps {

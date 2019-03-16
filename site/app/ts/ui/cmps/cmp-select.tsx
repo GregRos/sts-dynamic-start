@@ -24,7 +24,7 @@ export class Select<T> extends React.Component<SelectProps<T>> {
         let options = this.props.options.map((x, i) => {
             return <option
                 value={i}
-                key={i}c
+                key={i}
                 className={`${customNs("option")} ${genericNs("option")}`}
             >
                 {this.props.display(x)}

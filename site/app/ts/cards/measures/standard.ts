@@ -8,8 +8,8 @@ export interface StdMeasureWeights {
         Other: number;
     };
     Upgraded: {
-        yes: number;
-        no: number;
+        Yes: number;
+        No: number;
     };
     Rarity: {
         Basic: number;
@@ -19,16 +19,6 @@ export interface StdMeasureWeights {
         Special: number;
         Curse: number;
     };
-    Cost: {
-        0: number;
-        1: number;
-        2: number;
-        3: number;
-        4: number;
-        5: number;
-        X: number;
-        "": number;
-    }
 }
 
 
@@ -42,8 +32,7 @@ export class StdWeightedMeasure {
         let wgColor = weights.Color[card.color === this._color ? "Same" : card.color === "Colorless" ? card.color : "Other"];
         let wgUpgraded = weights.Upgraded[card.upgraded ? "Yes" : "No"];
         let wgRarity = weights.Rarity[card.rarity];
-        let wgEnergy = 1;
-        let res = wgColor * wgUpgraded * wgRarity * wgEnergy;
+        let res = wgColor * wgUpgraded * wgRarity;
         return res;
     }
 }

@@ -3,8 +3,8 @@
   "name": "DynamicStart",
   "author_list": ["GregRos"],
   "description": "Intelligently generated random starter decks.",
-  "version": "0.1.0-alpha",
-  "sts_version": "01-03-2019",
+  "version": "0.2.0-alpha",
+  "sts_version": "01-23-2019",
   "mts_version": "3.6.0",
   "dependencies": ["basemod"]
 }

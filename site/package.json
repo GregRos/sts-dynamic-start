@@ -1,5 +1,5 @@
 {
-  "name": "slay-the-spire-deck-tests",
+  "name": "dynamic-start-demo",
   "version": "0.1.0-alpha",
   "description": "Test dynamic starter decks for StS",
   "main": "index.js",

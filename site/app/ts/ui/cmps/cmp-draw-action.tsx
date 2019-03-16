@@ -42,7 +42,7 @@ export class CmpDrawAction extends React.Component<CmpDrawActionProps, CmpDrawAc
 
     constructor(props: CmpDrawActionProps) {
         super(props);
-        this.state = _.clone(initDraw);
+        this.state = initDraw;
     }
 
     onClick() {

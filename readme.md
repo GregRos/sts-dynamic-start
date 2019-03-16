@@ -63,8 +63,6 @@ The group of cards you pick from includes all colorless cards and same-color car
 
 All curses are equally likely to be drawn.
 
-The tables show the weight of each card based on property. To get the weight of a particular card, multiply all the values from the relevant tables. So an Uncommon, Colorless, 2-Energy card will have a weight of 7.2 and a Common 1-energy same-color card will have the weight of 96.
-
 The weights can also be seen as odds (for and against). To find the actual probability of something from its odds:
 
 

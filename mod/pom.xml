@@ -1,12 +1,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>DynamicStarterDeck</groupId>
-	<artifactId>DynamicStarterDeck</artifactId>
+	<groupId>DynamicStart</groupId>
+	<artifactId>DynamicStart</artifactId>
 	<version>v1.0.0</version>
 	<packaging>jar</packaging>
 
-	<name>DynamicStarterDeck</name>
+	<name>DynamicStart</name>
 	<description>Attempting to make a mod!</description>
 
 	<dependencies>
@@ -34,7 +34,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>DynamicStarterDeck</finalName>
+		<finalName>DynamicStart</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

@@ -1,14 +1,10 @@
-package DynamicStarterDeck;
-import basemod.BaseMod;
+package DynamicStart;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.neow.NeowEvent;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
@@ -18,7 +14,7 @@ public class dailyBlessingPatch
   @SpirePatch(clz= NeowEvent.class, method="dailyBlessing")
   public static class dailyBlessing
   {
-      private final static Logger logger = DynamicStarterDeck.logger;;
+      private final static Logger logger = DynamicStart.logger;;
 
       @SpirePostfixPatch
     public static void Postfix(NeowEvent __instance)

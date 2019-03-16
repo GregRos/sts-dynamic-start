@@ -1,8 +1,6 @@
-package DynamicStarterDeck;
-import basemod.BaseMod;
+package DynamicStart;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.random.Random;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
@@ -12,7 +10,7 @@ class CdfSelector {
     private Random _rng;
     private ArrayList<Double> _cdf;
     private ArrayList<AbstractCard> _cards;
-    private final static Logger logger = DynamicStarterDeck.logger;;
+    private final static Logger logger = DynamicStart.logger;;
 
     CdfSelector(Random rng, ArrayList<AbstractCard> cards, Function<AbstractCard, Double> measure) {
         _cards = new ArrayList<>();

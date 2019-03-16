@@ -118,6 +118,7 @@ export class CmpDrawAction extends React.Component<CmpDrawActionProps, CmpDrawAc
                     Draw!
                 </button>
             </div>
+
         </div>;
     }
 }

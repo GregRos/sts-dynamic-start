@@ -1,9 +1,8 @@
-package DynamicStarterDeck;
+package DynamicStart;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ class CardsByCategory {
     CdfSelector defense;
     CdfSelector special;
     CdfSelector curse;
-    private static final Logger logger = DynamicStarterDeck.logger;
+    private static final Logger logger = DynamicStart.logger;
 
     CardsByCategory() {
         ArrayList<AbstractCard> all = new ArrayList<>();

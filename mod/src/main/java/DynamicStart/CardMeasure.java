@@ -1,14 +1,13 @@
-package DynamicStarterDeck;
+package DynamicStart;
 
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.Logger;
 import java.util.function.Function;
 
 public class CardMeasure implements Function<AbstractCard, Double> {
 
     private AbstractCard.CardColor _color;
-    private final static Logger logger = DynamicStarterDeck.logger;;
+    private final static Logger logger = DynamicStart.logger;;
     CardMeasure(AbstractCard.CardColor color) {
         _color = color;
     }

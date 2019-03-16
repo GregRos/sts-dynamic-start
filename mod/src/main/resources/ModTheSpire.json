@@ -1,9 +1,9 @@
 {
-  "modid": "DynamicStarterDeck",
-  "name": "DynamicStarterDeck",
+  "modid": "DynamicStart",
+  "name": "DynamicStart",
   "author_list": ["GregRos"],
   "description": "Intelligently generated random starter decks.",
-  "version": "0.1.0",
+  "version": "0.1.0-alpha",
   "sts_version": "01-03-2019",
   "mts_version": "3.6.0",
   "dependencies": ["basemod"]

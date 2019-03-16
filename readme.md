@@ -51,7 +51,7 @@ This doesn't reflect the real profiles. It's just an example of what's possible.
 
 ## How cards are drawn
 
-*This section has MathJax math in it, which GItHub doesn't really support. You can find an extension to render it for you.*
+*This section has MathJax math in it, which GItHub doesn't really support. You can find an extension to render it for you, such as [this](https://chrome.google.com/webstore/detail/mathjax-plugin-for-github/ioemnmodlmafdkllaclgeombjnmnbima?hl=en)*
 
 We give different cards weights depending on:
 

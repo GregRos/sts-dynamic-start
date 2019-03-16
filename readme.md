@@ -1,4 +1,4 @@
-# Dynamic starter decks
+# DynamicStart
 
 **Currently in development.**
 
@@ -8,7 +8,7 @@ This mod lets you spice up your playthrough by giving you a random, but balanced
 2. The cards are drawn randomly, with much lower chances of getting rarer cards. This keeps things interesting but not overpowered. 
 3. You have a low chance of drawing colorless cards.
 
-There is a snazzy React app that can let you test it out.
+[**There is a snazzy React app that can let you test it out.**](https://dynamic-start.netlify.com/)
 
 ## Card categories
 

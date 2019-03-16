@@ -1,3 +1,3 @@
 # Dynamic Starter Decks 
 
-This is the Java code for the mod.
+This is the Kotlin code for the mode. 
